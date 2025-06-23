@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+
 //cargar variables de entorno
 require('dotenv').config();
 const cors = require('cors');
@@ -18,9 +19,8 @@ dbConnection();
 app.use(cors());
 
 
-
 // Directorio público
-app.use(express.static('public'));
+app.use(express .static('public'));
 
 // Lectura y parseo del body
 app.use(express.json());
@@ -29,10 +29,9 @@ app.use(express.json());
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/events', require('./routes/events'));
 
+
 //para el error cuando no se encuentra una ruta
-app.use( '*', ( req, res ) => {
-    res.sendFile( path.join( __dirname, 'public/index.html' ) );  
-});
+app.use(  (req, res) => { res.sendFile ( path.join( __dirname, 'public', 'index.html' )) });
 
 
 
