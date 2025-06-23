@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 //cargar variables de entorno
 require('dotenv').config();
 const cors = require('cors');
@@ -28,6 +29,10 @@ app.use(express.json());
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/events', require('./routes/events'));
 
+//para el error cuando no se encuentra una ruta
+app.use( '*', ( req, res ) => {
+    res.sendFile( path.join( __dirname, 'public/index.html' ) );  
+});
 
 
 
